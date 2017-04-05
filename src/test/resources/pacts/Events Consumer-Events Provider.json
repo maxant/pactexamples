@@ -1,0 +1,63 @@
+{
+    "provider": {
+        "name": "Events Provider"
+    },
+    "consumer": {
+        "name": "Events Consumer"
+    },
+    "interactions": [
+        {
+            "description": "a request to get events",
+            "request": {
+                "method": "POST",
+                "path": "/all",
+                "headers": {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "someField": "asdf"
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": [
+                    {
+                        "date": "2015-12-25T12:00:00.000",
+                        "location": "\u318b",
+                        "title": "harry"
+                    }
+                ],
+                "matchingRules": {
+                    "$.body[*].title": {
+                        "regex": ".*"
+                    },
+                    "$.headers.Content-Type": {
+                        "regex": "application/json"
+                    },
+                    "$.body[*].date": {
+                        "regex": "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]\\.[0-9][0-9][0-9]"
+                    },
+                    "$.body": {
+                        "min": 0,
+                        "match": "type"
+                    },
+                    "$.body[*].location": {
+                        "regex": ".*"
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.3.7"
+        }
+    }
+}

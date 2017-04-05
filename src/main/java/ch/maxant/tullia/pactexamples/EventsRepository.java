@@ -11,16 +11,19 @@ import java.util.List;
 
 public class EventsRepository {
 
-    public EventsRepository(){
+    private final String baseUrl;
+
+    public EventsRepository(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 
     public List<Event> getEvents(){
 
         try{
-            Client client = ClientBuilder.newClient();
+            Client client = ClientBuilder.newClient().register(LoggingFilter.class);
 
             Response response = client
-                    .target("http://localhost:8091/all")
+                    .target(baseUrl + "/all")
                     .request(MediaType.APPLICATION_JSON_TYPE)
                     .post(Entity.entity(new EventRequest("asdf"), MediaType.APPLICATION_JSON_TYPE), Response.class);
             if(response.getStatus() == Response.Status.OK.getStatusCode()){
@@ -35,6 +38,6 @@ public class EventsRepository {
     }
 
     public static void main(String[] args) {
-        System.out.println(new EventsRepository().getEvents());
+        System.out.println(new EventsRepository("http://localhost:8091").getEvents());
     }
 }
