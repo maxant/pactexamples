@@ -1,9 +1,9 @@
 {
     "provider": {
-        "name": "Events Provider"
+        "name": "EventsProvider"
     },
     "consumer": {
-        "name": "Events Consumer"
+        "name": "EventsConsumer1"
     },
     "interactions": [
         {
@@ -22,12 +22,12 @@
             "response": {
                 "status": 200,
                 "headers": {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json; charset=utf-8"
                 },
                 "body": [
                     {
                         "date": "2015-12-25T12:00:00.000",
-                        "location": "\u318b",
+                        "location": "\u1ed1",
                         "title": "harry"
                     }
                 ],
@@ -36,7 +36,7 @@
                         "regex": ".*"
                     },
                     "$.headers.Content-Type": {
-                        "regex": "application/json"
+                        "regex": "application/json; charset=utf-8"
                     },
                     "$.body[*].date": {
                         "regex": "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9]\\.[0-9][0-9][0-9]"
@@ -49,12 +49,13 @@
                         "regex": ".*"
                     }
                 }
-            }
+            },
+            "providerState": "initialStateForEventsTest"
         }
     ],
     "metadata": {
         "pact-specification": {
-            "version": "3.0.0"
+            "version": "2.0.0"
         },
         "pact-jvm": {
             "version": "3.3.7"
