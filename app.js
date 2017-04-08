@@ -27,17 +27,17 @@ app.post('/all', (req, res) => {
     );
 });
 
-app.post('/dictionary', (req, res) => {
-    console.log("post/dictionary");
+app.get('/dictionary', (req, res) => {
+    console.log("get/dictionary");
     res.status(200).send(
         {
             "ant": {
-                "name": "ant",
-                "number": 4
+                "title": "ant",
+                "date": "2017-02-17T21:00:00.000"
             },
             "john": {
-                "name": "john",
-                "number": 6
+                "title": "john",
+                "date": "2017-04-08T22:33:31.000"
             }
         }
     );

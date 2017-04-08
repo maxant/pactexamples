@@ -32,3 +32,8 @@ the server is adhering to the contract.
 ## Notes
 
 - Added JacksonConfig to META-INF/services/javax.ws.rs.ext.Providers so that Java 8 dates are nicely serialised.
+- Added `log4j.category.au.com.dius.pact.consumer.UnfilteredMockProvider=DEBUG` to `log4j.properties`
+
+## Ideas for tutorial
+
+- Add `.body("{}")` into a GET request and use logging to get trainees to work out what is wrong.

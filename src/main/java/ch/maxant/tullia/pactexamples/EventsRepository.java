@@ -8,6 +8,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 
 public class EventsRepository {
 
@@ -31,6 +32,26 @@ public class EventsRepository {
                 return events;
             } else{
                 throw new RuntimeException("failed to get events. status code was " + response.getStatus());
+            }
+        }catch(WebApplicationException e){
+            throw e; //TODO handle correctly
+        }
+    }
+
+    public Map<String, Event> getEventsMap(){
+
+        try{
+            Client client = ClientBuilder.newClient().register(LoggingFilter.class);
+
+            Response response = client
+                    .target(baseUrl + "/dictionary")
+                    .request(MediaType.APPLICATION_JSON_TYPE)
+                    .get(Response.class);
+            if(response.getStatus() == Response.Status.OK.getStatusCode()){
+                Map<String, Event> events = response.readEntity(new GenericType<Map<String, Event>>(){});
+                return events;
+            } else{
+                throw new RuntimeException("failed to get events as dictionary. status code was " + response.getStatus());
             }
         }catch(WebApplicationException e){
             throw e; //TODO handle correctly
