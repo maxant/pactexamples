@@ -27,7 +27,7 @@ public class EventsRepository3ConsumerTest extends ConsumerPactTest {
 
         return builder
                 .given("initialStateForEventsTest")
-                .uponReceiving("a request to get events")
+                .uponReceiving("a request to get events using the frameworks abstract class")
                 .path("/all")
                 .headers("Content-Type", MediaType.APPLICATION_JSON, "Accept", MediaType.APPLICATION_JSON) //content-type is what we send, accept is what we receive
                 .method("POST")

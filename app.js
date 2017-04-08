@@ -31,9 +31,9 @@ app.get('/dictionary', (req, res) => {
     console.log("get/dictionary");
     res.status(200).send(
         {
-            "ant": {
+            "tant": { //note, this does NOT match the value given in the pact consumer test
                 "title": "ant",
-                "date": "2017-02-17T21:00:00.000"
+                "asdf": 1
             },
             "john": {
                 "title": "john",

@@ -7,7 +7,7 @@
     },
     "interactions": [
         {
-            "description": "a request to get events",
+            "description": "a request to get events using the frameworks abstract class",
             "request": {
                 "method": "POST",
                 "path": "/all",
@@ -27,7 +27,7 @@
                 "body": [
                     {
                         "date": "2015-12-25T12:00:00.000",
-                        "location": "\u3bf8",
+                        "location": "\u3318\udb17\uf5cd",
                         "title": "harry"
                     }
                 ],

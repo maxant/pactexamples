@@ -7,7 +7,7 @@
     },
     "interactions": [
         {
-            "description": "a request to get events",
+            "description": "a request to get events keyed by title",
             "request": {
                 "method": "GET",
                 "path": "/dictionary",

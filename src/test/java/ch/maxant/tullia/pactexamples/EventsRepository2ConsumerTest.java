@@ -35,7 +35,7 @@ public class EventsRepository2ConsumerTest {
 
         return builder
                 .given("initialStateForEventsTest")
-                .uponReceiving("a request to get events")
+                .uponReceiving("a request to get events using annotations")
                 .path("/all")
                 .headers("Content-Type", MediaType.APPLICATION_JSON, "Accept", MediaType.APPLICATION_JSON) //content-type is what we send, accept is what we receive
                 .method("POST")

@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 @RunWith(PactRunner.class) // Say JUnit to run tests with custom Runner
 @Provider("EventsProvider") // Set up name of tested provider
 @PactFolder("pacts") // Point where to find pacts (See also section Pacts source in documentation)
-@VerificationReports({"console", "markdown"})
+@VerificationReports({"console", "markdown", "json"})
 public class ProviderTest {
 
     @State("initialStateForEventsTest") // Method will be run before testing interactions that require "initialStateForEventsTest" state

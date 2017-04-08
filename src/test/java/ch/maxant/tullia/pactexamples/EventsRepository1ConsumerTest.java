@@ -30,7 +30,7 @@ public class EventsRepository1ConsumerTest {
                 .consumer("EventsConsumer1")
                 .hasPactWith("EventsProvider")
                 .given("initialStateForEventsTest")
-                .uponReceiving("a request to get events")
+                .uponReceiving("a request to get events using the fragment to run the consumer")
                 .path("/all")
                 .headers("Content-Type", MediaType.APPLICATION_JSON, "Accept", MediaType.APPLICATION_JSON) //content-type is what we send, accept is what we receive
                 .method("POST")

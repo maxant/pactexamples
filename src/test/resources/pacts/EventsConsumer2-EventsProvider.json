@@ -7,7 +7,7 @@
     },
     "interactions": [
         {
-            "description": "a request to get events",
+            "description": "a request to get events using annotations",
             "request": {
                 "method": "POST",
                 "path": "/all",
@@ -27,7 +27,7 @@
                 "body": [
                     {
                         "date": "2015-12-25T12:00:00.000",
-                        "location": "\ubaf7",
+                        "location": "\u82f1\u11ab\u7fcf\u4001\u7f88\uda25\u10d9",
                         "title": "harry"
                     }
                 ],

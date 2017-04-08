@@ -37,3 +37,18 @@ the server is adhering to the contract.
 ## Ideas for tutorial
 
 - Add `.body("{}")` into a GET request and use logging to get trainees to work out what is wrong.
+- Change `app.js` and see what you have to change to make provider test fail
+- Check Baards notes
+- State
+- See report under `target/pact/reports`
+  - `.uponReceiving("...")` should be unique so that report doesn't get overwritten
+- Naming conventions for tests?
+- which of the three types of test should we use?
+
+## Support
+
+- https://groups.google.com/forum/#!msg/pact-support/6WDAeFSr1EU/jJPRGRenCgAJ
+- https://github.com/DiUS/pact-jvm/issues
+- Otherwise just Github which has examples
+  - Be prepared to look at non-java solutions for ideas
+  
