@@ -11,6 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class EventsRepositoryDictionaryArrayConsumerTest {
                 .given("initialStateForEventsTest")
                 .uponReceiving("a request to get events keyed by title")
                 .path("/dictionaryArray")
-                .headers("Connection", "Keep-Alive", "Content-Length", "0", "Accept", "application/json", "User-Agent", "Apache-HttpClient/4.5.2 (Java/1.8.0_60)")
+                .headers("Accept", MediaType.APPLICATION_JSON) //content-type is what we send, accept is what we receive
                 .method("GET")
                 .willRespondWith()
                 .status(200)

@@ -3,13 +3,10 @@ package ch.maxant.tullia.pactexamples;
 import au.com.dius.pact.consumer.Pact;
 import au.com.dius.pact.consumer.PactProviderRule;
 import au.com.dius.pact.consumer.PactVerification;
-import au.com.dius.pact.consumer.dsl.DslPart;
-import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.model.PactFragment;
 import org.junit.Rule;
 import org.junit.Test;
-import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -18,33 +15,29 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Another example of a consumer test.<br>
- * This one resembles {@link EventsRepository2ConsumerTest}.
- * <br><br>
- *     <b>THIS IS A TEST FOR https://github.com/DiUS/pact-jvm/issues/401</b>
- *
+ * to get around https://github.com/DiUS/pact-jvm/issues/401, lets just verify using the cut down json that we really need.
+ * means that the test is somewhat data dependent, but it still checks the structure!
  */
-public class EventsRepositoryDictionaryNestedArrayConsumerTest {
+public class EventsRepositoryDictionaryNestedArrayVerifiedUsingJsonConsumerTest {
 
     private static final Integer PORT = 8092;
 
     @Rule
     public PactProviderRule mockProvider = new PactProviderRule("EventsProvider", "localhost", PORT, this);
 
-    @Pact(provider = "EventsProvider", consumer = "EventsConsumerDictionaryNestedArray")
+    @Pact(provider = "EventsProvider", consumer = "EventsConsumerDictionaryNestedArrayVerifiedUsingJson")
     public PactFragment createFragment(PactDslWithProvider builder) {
 
-        LoggerFactory.getLogger(this.getClass()).info("creating fragement...");
-
-        DslPart body = new PactDslJsonBody()
-            .object("events")
-            //key is dynamic (i.e. think dictionary or java map
-            //see https://github.com/DiUS/pact-jvm/issues/313
-            //see https://github.com/DiUS/pact-jvm/tree/master/pact-jvm-consumer-junit
-            .eachKeyMappedToAnArrayLike("ant") //broken, see pact-jvm issue 401
-            .stringType("title", "ant")
-        //we dont care about other attributes here. neither does pact :-);
-        ;
+        //this json only contains the fields that we are really interested in!!
+        String json = "{\n" +
+                "        \"events\": {\n" +
+                "            \"tant\": [\n" +
+                "                {\n" +
+                "                    \"title\": \"ant\"\n" +
+                "                }\n" +
+                "            ]\n" +
+                "        }\n" +
+                "    }\n"; //TODO would be nicer to load this from a file :-)
 
         return builder
             .given("initialStateForEventsTest")
@@ -55,7 +48,7 @@ public class EventsRepositoryDictionaryNestedArrayConsumerTest {
             .willRespondWith()
             .status(200)
             .matchHeader("Content-Type", "application/json; charset=utf-8") //very important, otherwise resteasy/jackson cant deserialise
-            .body(body)
+            .body(json)
             .toFragment();
     }
 
@@ -64,7 +57,7 @@ public class EventsRepositoryDictionaryNestedArrayConsumerTest {
     public void runTest() {
         Map<String, Map<String, List<Event>>> events = new EventsRepository("http://localhost:" + PORT).getEventsMapNestedArray();
         assertEquals(1, events.size());
-        assertEquals("ant", events.get("events").get("ant").get(0).getTitle());
+        assertEquals("ant", events.get("events").get("tant").get(0).getTitle());
     }
 
 }

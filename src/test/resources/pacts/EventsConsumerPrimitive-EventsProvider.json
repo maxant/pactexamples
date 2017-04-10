@@ -3,14 +3,14 @@
         "name": "EventsProvider"
     },
     "consumer": {
-        "name": "EventsConsumerDictionaryNestedArray"
+        "name": "EventsConsumerPrimitive"
     },
     "interactions": [
         {
-            "description": "a request to get events keyed by title",
+            "description": "a request to get a number",
             "request": {
                 "method": "GET",
-                "path": "/dictionaryNestedArray",
+                "path": "/primitive",
                 "headers": {
                     "Accept": "application/json"
                 }
@@ -20,25 +20,13 @@
                 "headers": {
                     "Content-Type": "application/json; charset=utf-8"
                 },
-                "body": {
-                    "events": {
-                        "ant": [
-                            {
-                                "title": "ant"
-                            }
-                        ]
-                    }
-                },
+                "body": 3,
                 "matchingRules": {
                     "$.headers.Content-Type": {
                         "regex": "application/json; charset=utf-8"
                     },
-                    "$.body.*": {
-                        "min": 0,
-                        "match": "type"
-                    },
-                    "$.body.*[*].title": {
-                        "match": "type"
+                    "$.body": {
+                        "match": "integer"
                     }
                 }
             },

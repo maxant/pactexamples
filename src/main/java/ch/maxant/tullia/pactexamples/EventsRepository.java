@@ -67,7 +67,7 @@ public class EventsRepository {
                 });
                 return events;
             } else {
-                throw new RuntimeException("failed to get events as dictionary. status code was " + response.getStatus());
+                throw new RuntimeException("failed to get events as map array. status code was " + response.getStatus());
             }
         } catch (WebApplicationException e) {
             throw e; //TODO handle correctly
@@ -86,13 +86,32 @@ public class EventsRepository {
                 });
                 return events;
             } else {
-                throw new RuntimeException("failed to get events as dictionary. status code was " + response.getStatus());
+                throw new RuntimeException("failed to get events as map nested array. status code was " + response.getStatus());
             }
         } catch (WebApplicationException e) {
             throw e; //TODO handle correctly
         }
     }
 
+    public  int getPrimitive() {
+
+        try {
+            Client client = ClientBuilder.newClient().register(LoggingFilter.class);
+
+            Response response =
+                    client.target(baseUrl + "/primitive").request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
+            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                int num = response.readEntity(Integer.class);
+                return num;
+            } else {
+                throw new RuntimeException("failed to get primitive. status code was " + response.getStatus());
+            }
+        } catch (WebApplicationException e) {
+            throw e; //TODO handle correctly
+        }
+    }
+
+    //just an example of how to use the repo...
     public static void main(String[] args) {
         System.out.println(new EventsRepository("http://localhost:8091").getEvents());
     }

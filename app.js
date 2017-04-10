@@ -87,6 +87,12 @@ app.get('/dictionaryNestedArray', (req, res) => {
 })
 ;
 
+app.get('/primitive', (req, res) => {
+    console.log("get/primitive");
+    res.status(200).json(33);
+})
+;
+
 //handle errors
 app.use((err, req, res, next) => {
     console.error(err.stack);

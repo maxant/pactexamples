@@ -3,7 +3,7 @@
         "name": "EventsProvider"
     },
     "consumer": {
-        "name": "EventsConsumerDictionaryNestedArray"
+        "name": "EventsConsumerDictionaryNestedArrayVerifiedUsingJson"
     },
     "interactions": [
         {
@@ -22,7 +22,7 @@
                 },
                 "body": {
                     "events": {
-                        "ant": [
+                        "tant": [
                             {
                                 "title": "ant"
                             }
@@ -32,13 +32,6 @@
                 "matchingRules": {
                     "$.headers.Content-Type": {
                         "regex": "application/json; charset=utf-8"
-                    },
-                    "$.body.*": {
-                        "min": 0,
-                        "match": "type"
-                    },
-                    "$.body.*[*].title": {
-                        "match": "type"
                     }
                 }
             },
