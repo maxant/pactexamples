@@ -45,7 +45,7 @@ app.get('/dictionaryArray', (req, res) => {
     res.status(200).send({
         "tant": [
             { //note, this does NOT match the value given in the pact consumer test
-                "title": "ant",
+                "title": "antony",
                 "asdf": 1
             }
         ],
@@ -65,6 +65,7 @@ app.get('/dictionaryArray', (req, res) => {
 app.get('/dictionaryNestedArray', (req, res) => {
     console.log("get/dictionaryNestedArray");
     res.status(200).send({
+        "newFeature": {},
         "events": {
             "tant": [
                 { //note, this does NOT match the value given in the pact consumer test
