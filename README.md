@@ -2,6 +2,11 @@
 
 A playground for a JAX-RS Client and Pact examples.
 
+It contains a server (app.js, a simple Node/Express application) which answers with static 
+responses, as well as a number of consumer tests for ensuring that the consumer maps correctly
+and generates the pact, as well as a single provider tests for executing those pacts against
+the Node server.
+
 ## Starting the demo server
 
 This server runs using Node. 
@@ -25,9 +30,14 @@ These three tests create JSONs under `target/pacts`. These should be copied
 into `src/test/resources/pacts`. They are used by `ProviderTest` to check
 the server is adhering to the contract.
 
+Other consumer tests also exist, to test more complex cases.
+
+COPY THE PACTS MANUALLY FROM `target/pacts` to `src/test/resources/pacts`. Then you can run the `ProviderTest` which 
+compares the pact to the running Node server.
+
 ## TODO 
 
-- create tests for "dictionaries", ie objects with dynamic fieldnames.
+- nothing right now...
 
 ## Notes
 

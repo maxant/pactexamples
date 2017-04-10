@@ -1,14 +1,5 @@
 package ch.maxant.tullia.pactexamples;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.slf4j.LoggerFactory;
-
 import au.com.dius.pact.consumer.Pact;
 import au.com.dius.pact.consumer.PactProviderRule;
 import au.com.dius.pact.consumer.PactVerification;
@@ -16,6 +7,14 @@ import au.com.dius.pact.consumer.dsl.DslPart;
 import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.model.PactFragment;
+import org.junit.Rule;
+import org.junit.Test;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Another example of a consumer test.<br>
@@ -24,11 +23,6 @@ import au.com.dius.pact.model.PactFragment;
 public class EventsRepositoryDictionaryArrayConsumerTest {
 
     private static final Integer PORT = 8092;
-
-    static {
-        // Verzeichnis, wo die generierten PACT - Files gespeichert werden
-        System.setProperty("pact.rootDir", "src/test/resources/pacts");
-    }
 
     @Rule
     public PactProviderRule mockProvider = new PactProviderRule("EventsProvider", "localhost", PORT, this);
