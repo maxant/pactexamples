@@ -18,42 +18,77 @@ public class EventsRepository {
         this.baseUrl = baseUrl;
     }
 
-    public List<Event> getEvents(){
+    public List<Event> getEvents() {
 
-        try{
+        try {
             Client client = ClientBuilder.newClient().register(LoggingFilter.class);
 
-            Response response = client
-                    .target(baseUrl + "/all")
-                    .request(MediaType.APPLICATION_JSON_TYPE)
-                    .post(Entity.entity(new EventRequest("asdf"), MediaType.APPLICATION_JSON_TYPE), Response.class);
-            if(response.getStatus() == Response.Status.OK.getStatusCode()){
-                List<Event> events = response.readEntity(new GenericType<List<Event>>(){});
+            Response response = client.target(baseUrl + "/all").request(MediaType.APPLICATION_JSON_TYPE).post(
+                    Entity.entity(new EventRequest("asdf"), MediaType.APPLICATION_JSON_TYPE), Response.class);
+            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                List<Event> events = response.readEntity(new GenericType<List<Event>>() {
+                });
                 return events;
-            } else{
+            } else {
                 throw new RuntimeException("failed to get events. status code was " + response.getStatus());
             }
-        }catch(WebApplicationException e){
+        } catch (WebApplicationException e) {
             throw e; //TODO handle correctly
         }
     }
 
-    public Map<String, Event> getEventsMap(){
+    public Map<String, Event> getEventsMap() {
 
-        try{
+        try {
             Client client = ClientBuilder.newClient().register(LoggingFilter.class);
 
-            Response response = client
-                    .target(baseUrl + "/dictionary")
-                    .request(MediaType.APPLICATION_JSON_TYPE)
-                    .get(Response.class);
-            if(response.getStatus() == Response.Status.OK.getStatusCode()){
-                Map<String, Event> events = response.readEntity(new GenericType<Map<String, Event>>(){});
+            Response response = client.target(baseUrl + "/dictionary").request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
+            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                Map<String, Event> events = response.readEntity(new GenericType<Map<String, Event>>() {
+                });
                 return events;
-            } else{
+            } else {
                 throw new RuntimeException("failed to get events as dictionary. status code was " + response.getStatus());
             }
-        }catch(WebApplicationException e){
+        } catch (WebApplicationException e) {
+            throw e; //TODO handle correctly
+        }
+    }
+
+    public Map<String, List<Event>> getEventsMapArray() {
+
+        try {
+            Client client = ClientBuilder.newClient().register(LoggingFilter.class);
+
+            Response response =
+                    client.target(baseUrl + "/dictionaryArray").request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
+            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                Map<String, List<Event>> events = response.readEntity(new GenericType<Map<String, List<Event>>>() {
+                });
+                return events;
+            } else {
+                throw new RuntimeException("failed to get events as dictionary. status code was " + response.getStatus());
+            }
+        } catch (WebApplicationException e) {
+            throw e; //TODO handle correctly
+        }
+    }
+
+    public  Map<String, Map<String, List<Event>>> getEventsMapNestedArray() {
+
+        try {
+            Client client = ClientBuilder.newClient().register(LoggingFilter.class);
+
+            Response response =
+                    client.target(baseUrl + "/dictionaryNestedArray").request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
+            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                Map<String, Map<String, List<Event>>> events = response.readEntity(new GenericType<Map<String, Map<String, List<Event>>>>() {
+                });
+                return events;
+            } else {
+                throw new RuntimeException("failed to get events as dictionary. status code was " + response.getStatus());
+            }
+        } catch (WebApplicationException e) {
             throw e; //TODO handle correctly
         }
     }
