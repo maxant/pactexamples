@@ -1,5 +1,6 @@
 package ch.maxant.tullia.pactexamples;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
@@ -23,6 +24,7 @@ public class JacksonConfig implements ContextResolver<ObjectMapper> {
         this.objectMapper.registerModule(new JavaTimeModule());
 
         this.objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
 
