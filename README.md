@@ -42,7 +42,7 @@ compares the pact to the running Node server.
 ## Notes
 
 - Added JacksonConfig to META-INF/services/javax.ws.rs.ext.Providers so that Java 8 dates are nicely serialised.
-- Added `log4j.category.au.com.dius.pact.consumer.UnfilteredMockProvider=DEBUG` to `log4j.properties`
+- Added `log4j.category.au.com.dius.pact=DEBUG` to `log4j.properties`
 
 ## Ideas for tutorial
 
